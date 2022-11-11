@@ -1,6 +1,6 @@
-FROM ubuntu:14.04
+FROM ubuntu:20.04
 RUN apt-get update
-RUN apt-get install -y postfix postfix-mysql dovecot-common dovecot-pop3d dovecot-imapd openssl dovecot-mysql
+RUN apt-get install -y postfix postfix-mysql dovecot-common dovecot-pop3d dovecot-imapd openssl dovecot-mysql nano
 ADD postfix /etc/postfix
 ADD dovecot /etc/dovecot
 RUN groupadd -g 5000 vmail && \
@@ -29,12 +29,12 @@ ENV DB_HOST localhost
 ENV DB_USER root 
 
 # SMTP ports
-EXPOSE 25
-EXPOSE 587  
+EXPOSE 2525
+EXPOSE 5587  
 # POP and IMAP ports  
-EXPOSE 110
-EXPOSE 143
-EXPOSE 995
-EXPOSE 993
+EXPOSE 1110
+EXPOSE 1143
+EXPOSE 9595
+EXPOSE 9393
 
 CMD sh start.sh

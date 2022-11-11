@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mailserver:
+    restart: unless-stopped
+    image: marooou/postfix-roundcube:latest
+    env_file:
+      - .env
+    ports:
+      - "2525:25"
+      - "8089:80"
+      - "1110:110"
+      - "1143:143"
+      - "4465:465"
+      - "9393:993"
+      - "9595:995"
+    volumes:
+      - /Users/faza/Documents/Project Latihan/DockerPostfixDovecot/data/mysql:/var/lib/mysql/
+      - /Users/faza/Documents/Project Latihan/DockerPostfixDovecot/data/vmail/:/var/vmail/
+      - /Users/faza/Documents/Project Latihan/DockerPostfixDovecot/data/log/:/var/log
+    
